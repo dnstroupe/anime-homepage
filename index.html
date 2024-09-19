@@ -23,7 +23,7 @@
     <!-- Anime.js for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
-    <!-- Custom Styles (if needed) -->
+    <!-- Custom Styles -->
     <link rel="stylesheet" href="styles/style.css" />
 
     <style>
@@ -38,13 +38,63 @@
       }
 
       /* Custom Hover and Animation Effects */
+      .scale-effect {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        cursor: pointer;
+      }
+
       .scale-effect:hover {
-        transform: scale(1.05);
-        transition: transform 0.3s ease;
+        transform: scale(1.05); /* Slight zoom effect */
+        box-shadow: 0 10px 20px rgba(255, 255, 0, 0.6); /* Glowing yellow shadow */
       }
 
       .hero h2 {
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+      }
+
+      /* Modal Styling */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        justify-content: center;
+        align-items: center;
+        z-index: 1000;
+      }
+
+      .modal-content {
+        background-color: #1a202c;
+        padding: 20px;
+        border-radius: 8px;
+        max-width: 90%;
+        text-align: center;
+        color: white;
+      }
+
+      .modal img {
+        max-width: 80%;
+        max-height: 60%;
+      }
+
+      .modal p {
+        margin-top: 10px;
+        color: #ffd700;
+      }
+
+      .close-btn {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        background-color: #e53e3e;
+        padding: 10px;
+        border: none;
+        border-radius: 50%;
+        color: white;
+        cursor: pointer;
       }
     </style>
   </head>
@@ -56,22 +106,30 @@
         <h1 class="text-4xl font-extrabold text-yellow-400">Anime World</h1>
         <ul class="flex space-x-8 text-lg">
           <li>
-            <a href="#" class="hover:text-yellow-300 transition duration-300"
+            <a
+              href="#home"
+              class="hover:text-yellow-300 transition duration-300"
               >Home</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-yellow-300 transition duration-300"
+            <a
+              href="#shows"
+              class="hover:text-yellow-300 transition duration-300"
               >Shows</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-yellow-300 transition duration-300"
+            <a
+              href="#characters"
+              class="hover:text-yellow-300 transition duration-300"
               >Characters</a
             >
           </li>
           <li>
-            <a href="#" class="hover:text-yellow-300 transition duration-300"
+            <a
+              href="#community"
+              class="hover:text-yellow-300 transition duration-300"
               >Community</a
             >
           </li>
@@ -79,8 +137,9 @@
       </nav>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Hero Section (Home) -->
     <section
+      id="home"
       class="hero bg-cover bg-center h-screen"
       style="
         background-image: url('assets/anime-hero-bg.jpg');
@@ -98,7 +157,7 @@
           worlds.
         </p>
         <a
-          href="#"
+          href="#shows"
           class="px-8 py-4 bg-yellow-500 text-black rounded-lg shadow-lg hover:bg-yellow-600 transition duration-300"
           >Explore Shows</a
         >
@@ -106,16 +165,17 @@
     </section>
 
     <!-- Shows Section -->
-    <main class="container mx-auto py-12">
-      <section class="mb-12">
-        <h3 class="text-4xl font-extrabold text-center text-yellow-400 mb-6">
-          Featured Anime Shows
-        </h3>
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          <!-- Show 1: Neon Vanguard -->
-          <div
-            class="bg-gray-800 rounded-lg shadow-lg overflow-hidden scale-effect"
-          >
+    <section id="shows" class="container mx-auto py-12">
+      <h3 class="text-4xl font-extrabold text-center text-yellow-400 mb-6">
+        Featured Anime Shows
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <!-- Show 1: Neon Vanguard -->
+        <div
+          class="relative group scale-effect"
+          onclick="openModal('neonModal')"
+        >
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
             <img
               src="assets/kaizen-arashi.jpg"
               alt="Kaizen Arashi"
@@ -129,11 +189,14 @@
               </p>
             </div>
           </div>
+        </div>
 
-          <!-- Show 2: Phantom Reverie -->
-          <div
-            class="bg-gray-800 rounded-lg shadow-lg overflow-hidden scale-effect"
-          >
+        <!-- Show 2: Phantom Reverie -->
+        <div
+          class="relative group scale-effect"
+          onclick="openModal('phantomModal')"
+        >
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
             <img
               src="assets/elysia-mitsuri.jpg"
               alt="Elysia Mitsuri"
@@ -147,11 +210,14 @@
               </p>
             </div>
           </div>
+        </div>
 
-          <!-- Show 3: Celestial Blades -->
-          <div
-            class="bg-gray-800 rounded-lg shadow-lg overflow-hidden scale-effect"
-          >
+        <!-- Show 3: Celestial Blades -->
+        <div
+          class="relative group scale-effect"
+          onclick="openModal('celestialModal')"
+        >
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
             <img
               src="assets/ren-kaito.jpg"
               alt="Ren Kaito"
@@ -165,11 +231,14 @@
               </p>
             </div>
           </div>
+        </div>
 
-          <!-- Show 4: Blaze of the Wilds -->
-          <div
-            class="bg-gray-800 rounded-lg shadow-lg overflow-hidden scale-effect"
-          >
+        <!-- Show 4: Blaze of the Wilds -->
+        <div
+          class="relative group scale-effect"
+          onclick="openModal('blazeModal')"
+        >
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
             <img
               src="assets/akira-kazuma.jpg"
               alt="Akira Kazuma"
@@ -183,11 +252,14 @@
               </p>
             </div>
           </div>
+        </div>
 
-          <!-- Show 5: Shattered Crown -->
-          <div
-            class="bg-gray-800 rounded-lg shadow-lg overflow-hidden scale-effect"
-          >
+        <!-- Show 5: Shattered Crown -->
+        <div
+          class="relative group scale-effect"
+          onclick="openModal('shatteredModal')"
+        >
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
             <img
               src="assets/lena-valis.jpg"
               alt="Lena Valis"
@@ -201,11 +273,14 @@
               </p>
             </div>
           </div>
+        </div>
 
-          <!-- Show 6: Chrono Rift -->
-          <div
-            class="bg-gray-800 rounded-lg shadow-lg overflow-hidden scale-effect"
-          >
+        <!-- Show 6: Chrono Rift -->
+        <div
+          class="relative group scale-effect"
+          onclick="openModal('chronoModal')"
+        >
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
             <img
               src="assets/talon-drayke.jpg"
               alt="Talon Drayke"
@@ -219,11 +294,14 @@
               </p>
             </div>
           </div>
+        </div>
 
-          <!-- Show 7: Echoes of the Deep -->
-          <div
-            class="bg-gray-800 rounded-lg shadow-lg overflow-hidden scale-effect"
-          >
+        <!-- Show 7: Echoes of the Deep -->
+        <div
+          class="relative group scale-effect"
+          onclick="openModal('echoesModal')"
+        >
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
             <img
               src="assets/mira-solara.jpg"
               alt="Mira Solara"
@@ -236,27 +314,234 @@
               </p>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
 
-          <!-- Show 8: Flameborn Legacy -->
-          <div
-            class="bg-gray-800 rounded-lg shadow-lg overflow-hidden scale-effect"
-          >
+    <!-- Modals for Anime Shows -->
+    <div id="neonModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('neonModal')">X</button>
+        <img src="assets/neon-vanguard-large.jpg" alt="Neon Vanguard" />
+        <p>A thrilling journey to save humanity from alien invaders in 2185.</p>
+      </div>
+    </div>
+
+    <div id="phantomModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('phantomModal')">
+          X
+        </button>
+        <img src="assets/phantom-reverie-large.jpg" alt="Phantom Reverie" />
+        <p>Explore the mystical realms of life and death.</p>
+      </div>
+    </div>
+
+    <div id="celestialModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('celestialModal')">
+          X
+        </button>
+        <img src="assets/celestial-blades-large.jpg" alt="Celestial Blades" />
+        <p>A battle among the stars with legendary star-forged swords.</p>
+      </div>
+    </div>
+
+    <div id="blazeModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('blazeModal')">X</button>
+        <img
+          src="assets/blaze-of-the-wilds-large.jpg"
+          alt="Blaze of the Wilds"
+        />
+        <p>
+          Survive in a world torn apart, with elemental creatures at your side.
+        </p>
+      </div>
+    </div>
+
+    <div id="shatteredModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('shatteredModal')">
+          X
+        </button>
+        <img src="assets/shattered-crown-large.jpg" alt="Shattered Crown" />
+        <p>A princess's quest to reclaim her broken kingdom.</p>
+      </div>
+    </div>
+
+    <div id="chronoModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('chronoModal')">X</button>
+        <img src="assets/chrono-rift-large.jpg" alt="Chrono Rift" />
+        <p>Timelines are colliding. Only one agent can fix them.</p>
+      </div>
+    </div>
+
+    <div id="echoesModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('echoesModal')">X</button>
+        <img
+          src="assets/echoes-of-the-deep-large.jpg"
+          alt="Echoes of the Deep"
+        />
+        <p>
+          Dive into the unknown and discover secrets buried deep beneath the
+          ocean.
+        </p>
+      </div>
+    </div>
+
+    <!-- Characters Section -->
+    <section id="characters" class="container mx-auto py-12">
+      <h3 class="text-4xl font-extrabold text-center text-yellow-400 mb-6">
+        Featured Characters
+      </h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+        <!-- Character 1: Elysia Mitsuri -->
+        <div
+          class="relative group scale-effect"
+          onclick="openModal('elysiaModal')"
+        >
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
             <img
-              src="assets/rykan-fyre.jpg"
-              alt="Rykan Fyre"
+              src="assets/elysia-mitsuri.jpg"
+              alt="Elysia Mitsuri"
               class="w-full h-56 object-cover"
             />
             <div class="p-6">
-              <h4 class="text-2xl font-bold mb-2">Flameborn Legacy</h4>
+              <h4 class="text-2xl font-bold mb-2">Elysia Mitsuri</h4>
               <p class="text-gray-300">
-                The last heir to a dynasty of flame-users must fight to defend
-                his people.
+                A spirit walker who bridges the gap between the realms of the
+                living and the dead.
               </p>
             </div>
           </div>
         </div>
-      </section>
-    </main>
+
+        <!-- Character 2: Ren Kaito -->
+        <div
+          class="relative group scale-effect"
+          onclick="openModal('renModal')"
+        >
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+            <img
+              src="assets/ren-kaito.jpg"
+              alt="Ren Kaito"
+              class="w-full h-56 object-cover"
+            />
+            <div class="p-6">
+              <h4 class="text-2xl font-bold mb-2">Ren Kaito</h4>
+              <p class="text-gray-300">
+                A fierce warrior with a star-forged blade, battling cosmic
+                enemies.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Character 3: Talon Drayke -->
+        <div
+          class="relative group scale-effect"
+          onclick="openModal('talonModal')"
+        >
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+            <img
+              src="assets/talon-drayke.jpg"
+              alt="Talon Drayke"
+              class="w-full h-56 object-cover"
+            />
+            <div class="p-6">
+              <h4 class="text-2xl font-bold mb-2">Talon Drayke</h4>
+              <p class="text-gray-300">
+                A rogue agent with the ability to travel through time.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Character 4: Mira Solara -->
+        <div
+          class="relative group scale-effect"
+          onclick="openModal('miraModal')"
+        >
+          <div class="bg-gray-800 rounded-lg shadow-lg overflow-hidden">
+            <img
+              src="assets/mira-solara.jpg"
+              alt="Mira Solara"
+              class="w-full h-56 object-cover"
+            />
+            <div class="p-6">
+              <h4 class="text-2xl font-bold mb-2">Mira Solara</h4>
+              <p class="text-gray-300">
+                An underwater explorer who uncovers secrets in the deep ocean.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Modals for Characters -->
+    <div id="elysiaModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('elysiaModal')">X</button>
+        <img src="assets/elysia-mitsuri.jpg" alt="Elysia Mitsuri" />
+        <p>
+          Elysia Mitsuri, a spirit walker, is tasked with balancing the realms
+          of the living and the dead. Her mysterious powers allow her to
+          communicate with spirits and journey between both worlds, solving
+          supernatural disputes.
+        </p>
+      </div>
+    </div>
+
+    <div id="renModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('renModal')">X</button>
+        <img src="assets/ren-kaito.jpg" alt="Ren Kaito" />
+        <p>
+          Ren Kaito is an elite warrior who wields a star-forged blade,
+          protecting the galaxy from cosmic threats. His abilities allow him to
+          channel the energy of dying stars into powerful, devastating attacks.
+        </p>
+      </div>
+    </div>
+
+    <div id="talonModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('talonModal')">X</button>
+        <img src="assets/talon-drayke.jpg" alt="Talon Drayke" />
+        <p>
+          Talon Drayke is a rogue agent with the rare ability to manipulate
+          time. He travels through different eras, preventing catastrophic
+          timeline disruptions that could destroy all of existence.
+        </p>
+      </div>
+    </div>
+
+    <div id="miraModal" class="modal">
+      <div class="modal-content">
+        <button class="close-btn" onclick="closeModal('miraModal')">X</button>
+        <img src="assets/mira-solara.jpg" alt="Mira Solara" />
+        <p>
+          Mira Solara is an underwater explorer who ventures into the darkest
+          and deepest parts of the ocean. She uncovers ancient secrets and faces
+          dangerous creatures hidden deep below the ocean’s surface.
+        </p>
+      </div>
+    </div>
+
+    <!-- Community Section -->
+    <section id="community" class="container mx-auto py-12">
+      <h3 class="text-4xl font-extrabold text-center text-yellow-400 mb-6">
+        Join the Anime Community
+      </h3>
+      <p class="text-center text-gray-300">
+        Stay connected with other anime fans, share your artwork, and get
+        updates on the latest shows.
+      </p>
+    </section>
 
     <!-- Footer Section -->
     <footer class="bg-gray-700 text-center p-6">
@@ -264,28 +549,45 @@
       <p class="text-gray-400">
         Follow us on social media:
         <a
-          href="#"
+          href="https://www.tiktok.com"
           class="text-yellow-400 hover:text-yellow-500 transition duration-300"
-          ><i class="fab fa-twitter"></i> Twitter</a
+          ><i class="fab fa-tiktok"></i> TikTok</a
         >,
         <a
-          href="#"
+          href="https://www.instagram.com"
           class="text-yellow-400 hover:text-yellow-500 transition duration-300"
           ><i class="fab fa-instagram"></i> Instagram</a
         >,
         <a
-          href="#"
+          href="https://www.x.com"
+          class="text-yellow-400 hover:text-yellow-500 transition duration-300"
+          ><i class="fab fa-x-twitter"></i> X</a
+        >,
+        <a
+          href="https://www.youtube.com"
           class="text-yellow-400 hover:text-yellow-500 transition duration-300"
           ><i class="fab fa-youtube"></i> YouTube</a
         >
       </p>
     </footer>
 
+    <!-- JavaScript for Modals -->
+    <script>
+      function openModal(modalId) {
+        document.getElementById(modalId).style.display = "flex";
+      }
+
+      function closeModal(modalId) {
+        document.getElementById(modalId).style.display = "none";
+      }
+    </script>
+
     <!-- JavaScript Animations -->
     <script>
       anime({
         targets: "h2",
         translateY: [-50, 0],
+        opacity: [0, 1],
         duration: 1500,
         easing: "easeOutExpo",
       });
