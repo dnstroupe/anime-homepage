@@ -6,13 +6,7 @@
     <title>Anime World - Home</title>
 
     <!-- Tailwind CSS -->
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
-
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="styles/style.css" />
+    <link href="styles/output.css" rel="stylesheet" />
 
     <!-- Google Fonts -->
     <link
@@ -29,6 +23,9 @@
     <!-- Anime.js for Animations -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
 
+    <!-- Custom Styles (if needed) -->
+    <link rel="stylesheet" href="styles/style.css" />
+
     <style>
       body {
         font-family: "Zilla Slab", sans-serif;
@@ -40,10 +37,14 @@
         font-family: "Rampart One", cursive;
       }
 
-      /* Custom Styles for Hover Effects and Animations */
+      /* Custom Hover and Animation Effects */
       .scale-effect:hover {
         transform: scale(1.05);
         transition: transform 0.3s ease;
+      }
+
+      .hero h2 {
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
       }
     </style>
   </head>
@@ -78,7 +79,7 @@
       </nav>
     </header>
 
-    <!-- Hero Section with Background and Animation -->
+    <!-- Hero Section -->
     <section
       class="hero bg-cover bg-center h-screen"
       style="

@@ -1,0 +1,70 @@
+/* Tailwind CSS Directives */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom Styles for Anime World */
+
+/* Custom hover effect for the scale animation on anime cards */
+.scale-effect:hover {
+    transform: scale(1.05);
+    transition: transform 0.3s ease;
+}
+
+/* Custom hero section style */
+.hero h2 {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+/* Footer Styling */
+footer {
+    background-color: #2F2F2F;
+    color: #FFF;
+}
+
+/* Social Media Icon Hover Effects */
+footer a:hover {
+    color: #FFD700;
+    transition: color 0.3s ease;
+}
+
+/* Body Styling Adjustments */
+body {
+    font-family: 'Zilla Slab', sans-serif;
+    background-color: #1A202C; /* Tailwind's bg-gray-900 */
+    color: #E2E8F0;           /* Tailwind's text-gray-300 */
+}
+
+/* Section Heading Style */
+h3 {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #FFD700; /* Neon Yellow */
+}
+
+/* Card Title Styling */
+h4 {
+    color: #FF4C4C; /* Anime-themed vibrant red */
+    font-size: 1.75rem;
+}
+
+/* Adjust Image Responsiveness */
+img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+}
+
+/* Button Styling */
+button {
+    background-color: #FF4C4C;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+button:hover {
+    background-color: #E53E3E; /* Darker Red */
+    transition: background-color 0.3s ease;
+}
